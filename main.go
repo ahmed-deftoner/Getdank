@@ -14,7 +14,7 @@ func main()  {
 	)
 	c.SetRequestTimeout(120 * time.Second)
 
-	c.OnHTML("div.top-matter p.title", func (h *colly.HTMLElement)  {
+	c.OnHTML("div.top-matter p.title a.title", func (h *colly.HTMLElement)  {
 		fmt.Println(h.Text)
 	})
 
