@@ -13,6 +13,11 @@ func main()  {
 		colly.AllowedDomains("old.reddit.com"),
 	)
 	c.SetRequestTimeout(120 * time.Second)
+
+	c.OnHTML("div.top-matter p.title", func (h *colly.HTMLElement)  {
+		fmt.Println(h.Text)
+	})
+
 	c.OnRequest(func(r *colly.Request) {
 		fmt.Println("Visiting", r.URL)
 	})
