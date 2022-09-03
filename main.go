@@ -9,7 +9,9 @@ import (
 
 
 func main()  {
-	c := colly.NewCollector()
+	c := colly.NewCollector(
+		colly.AllowedDomains("old.reddit.com"),
+	)
 	c.SetRequestTimeout(120 * time.Second)
 	c.OnRequest(func(r *colly.Request) {
 		fmt.Println("Visiting", r.URL)
@@ -22,5 +24,5 @@ func main()  {
 	c.OnError(func(r *colly.Response, e error) {
 		fmt.Println("Got this error:", e)
 	})
-	c.Visit("https://www.reddit.com/r/dankmemes/")
+	c.Visit("https://old.reddit.com/r/dankmemes/")
 }
